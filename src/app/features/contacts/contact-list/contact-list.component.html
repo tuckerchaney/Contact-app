@@ -1,0 +1,5 @@
+<div class="contact-list">
+  @for (contact of sortedContacts(); track contact.id) {
+  <app-contact-card [contact]="contact"></app-contact-card>
+  }
+</div>

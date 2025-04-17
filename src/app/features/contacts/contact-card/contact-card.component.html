@@ -1,0 +1,28 @@
+<div class="contact-card">
+  <h2>{{ contact().firstName }} {{ contact().lastName }}</h2>
+
+  <p class="contact-detail">
+    <span class="contact-label">Email:</span>
+    <span class="contact-value">{{ contact().email }}</span>
+  </p>
+
+  <p class="contact-detail">
+    <span class="contact-label">Phone:</span>
+    <span class="contact-value">{{ contact().phone }}</span>
+  </p>
+
+  <p class="contact-detail">
+    <span class="contact-label">Address:</span>
+    <span class="contact-value">{{ contact().address }}</span>
+  </p>
+
+  <p class="contact-detail">
+    <span class="contact-label">Note:</span>
+    <span class="contact-value">{{ contact().note }}</span>
+  </p>
+
+  <div class="contact-actions">
+    <button class="edit-button">Edit</button>
+    <button class="delete-button" (click)="deleteContact()">Delete</button>
+  </div>
+</div>

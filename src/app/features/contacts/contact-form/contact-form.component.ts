@@ -33,7 +33,11 @@ export class ContactFormComponent {
       !(email.trim() || phone.trim())
     ) {
       this.snackbar.open(
-        'Please fill out First Name, Last Name and either Email or Phone.'
+        'Please fill out First Name, Last Name and either Email or Phone.',
+        'Dismiss',
+        {
+          duration: 3000,
+        }
       );
       return;
     }
@@ -41,7 +45,9 @@ export class ContactFormComponent {
     this.contactService.addContact(this.contact);
     this.resetForm();
     this.dialog.closeAll();
-    this.snackbar.open('Contact Created Successfully!');
+    this.snackbar.open('Contact Created Successfully!', 'Dismiss', {
+      duration: 3000,
+    });
   }
 
   onReset() {

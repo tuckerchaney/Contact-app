@@ -31,3 +31,6 @@
 .spacer {
   width: 100px; /* Ensures the logo and search stay centered */
 }
+.logo {
+  cursor: pointer;
+}

@@ -7,29 +7,29 @@ import { contactDummyData } from '../data/data';
   providedIn: 'root',
 })
 export class ContactService {
+  private allContacts = signal<Contact[]>(contactDummyData);
   contacts = signal<Contact[]>(contactDummyData);
-  constructor() {}
   deleteContact(id: number) {
     this.contacts.update((contacts) =>
       contacts.filter((contact) => contact.id !== id)
     );
   }
   searchContact(searchTerm: string) {
-    this.contacts.update((contacts) =>
-      contacts.filter(
-        (contact) =>
-          contact.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.phone.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    const lowerTerm = searchTerm.toLowerCase();
+    const filtered = this.allContacts().filter(
+      (contact) =>
+        contact.firstName.toLowerCase().includes(lowerTerm) ||
+        contact.lastName.toLowerCase().includes(lowerTerm) ||
+        contact.email.toLowerCase().includes(lowerTerm) ||
+        contact.phone.toLowerCase().includes(lowerTerm)
     );
+    this.contacts.set(filtered);
   }
 
   addContact(contact: Contact) {
     this.contacts.update((contacts) => {
       const newContact = { ...contact, id: Math.random() * 100000 };
-      const newContacts = [...contacts, contact];
+      const newContacts = [...contacts, newContact];
       return newContacts;
     });
   }

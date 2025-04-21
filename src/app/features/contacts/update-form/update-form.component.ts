@@ -41,7 +41,9 @@ export class UpdateFormComponent {
     this.contactService.addContact(this.contact);
     this.resetForm();
     this.dialog.closeAll();
-    this.snackbar.open('Contact Updated Successfully!');
+    this.snackbar.open('Contact Updated Successfully!', 'Dismiss', {
+      duration: 3000,
+    });
   }
 
   onReset() {

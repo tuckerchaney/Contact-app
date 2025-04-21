@@ -4,9 +4,16 @@ import { ContactCardComponent } from './features/contacts/contact-card/contact-c
 import { SharedModule } from './shared/shared.module';
 import { Contact } from './shared/models/contact';
 import { ContactListComponent } from './features/contacts/contact-list/contact-list.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 @Component({
   selector: 'app-root',
-  imports: [SharedModule],
+  imports: [
+    SharedModule,
+    HeaderComponent,
+    FooterComponent,
+    ContactListComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

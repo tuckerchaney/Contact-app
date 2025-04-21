@@ -1,17 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Inject, Signal } from '@angular/core';
 import { Contact } from '../../../shared/models/contact';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ContactService } from '../../../shared/services/contact.service';
 import { SharedModule } from '../../../shared/shared.module';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 @Component({
-  selector: 'app-contact-form',
-  templateUrl: './contact-form.component.html',
-  styleUrl: './contact-form.component.css',
+  selector: 'app-update-form',
+  templateUrl: './update-form.component.html',
+  styleUrl: './update-form.component.css',
   imports: [SharedModule],
 })
-export class ContactFormComponent {
+export class UpdateFormComponent {
   snackbar = inject(MatSnackBar);
   dialog = inject(MatDialog);
   contactService = inject(ContactService);
@@ -38,10 +37,11 @@ export class ContactFormComponent {
       return;
     }
 
+    this.contactService.deleteContact(this.contact.id);
     this.contactService.addContact(this.contact);
     this.resetForm();
     this.dialog.closeAll();
-    this.snackbar.open('Contact Created Successfully!');
+    this.snackbar.open('Contact Updated Successfully!');
   }
 
   onReset() {
@@ -58,5 +58,8 @@ export class ContactFormComponent {
       address: '',
       note: '',
     };
+  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Signal<Contact>) {
+    this.contact = data();
   }
 }

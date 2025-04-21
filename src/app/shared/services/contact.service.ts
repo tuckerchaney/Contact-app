@@ -25,4 +25,12 @@ export class ContactService {
       )
     );
   }
+
+  addContact(contact: Contact) {
+    this.contacts.update((contacts) => {
+      const newContact = { ...contact, id: Math.random() * 100000 };
+      const newContacts = [...contacts, contact];
+      return newContacts;
+    });
+  }
 }
